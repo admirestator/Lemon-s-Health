@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/logo">
+        <file>EvaHealth.png</file>
+        <file>EvaHealth.ico</file>
+    </qresource>
+</RCC>
