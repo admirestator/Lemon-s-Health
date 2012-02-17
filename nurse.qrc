@@ -2,5 +2,7 @@
     <qresource prefix="/logo">
         <file>EvaHealth.png</file>
         <file>EvaHealth.ico</file>
+        <file>baby_tux_cow555px.png</file>
+        <file>baby_tux_cow.ico</file>
     </qresource>
 </RCC>

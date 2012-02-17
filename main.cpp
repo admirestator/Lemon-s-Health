@@ -15,6 +15,9 @@
 int main(int argc, char *argv[])
 {
 
+    //read config
+    Config conf_main;
+    conf_main.readConfig();
 
     QApplication *app = new QApplication(argc, argv);
     if (!QSystemTrayIcon::isSystemTrayAvailable()) {
@@ -23,14 +26,16 @@ int main(int argc, char *argv[])
                                           "on this system."));
         app->quit();
     }
+    QApplication::setQuitOnLastWindowClosed(false);
 
-    QString locale = QLocale::system().name();
+    //language
     QTranslator translator;
-    translator.load(QString(locale));
-            qDebug() << locale;
+   // translator.load(conf_main.language);
+    translator.load(QString("zh_CN"));
+            qDebug() << conf_main.language;
     app->installTranslator(&translator);
 
-    QApplication::setQuitOnLastWindowClosed(false);
+    //create main window
     MainWindow *main_window = new MainWindow();
 
 

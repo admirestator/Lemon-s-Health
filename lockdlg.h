@@ -2,6 +2,7 @@
 #define LOCKDLG_H
 
 #include <QMainWindow>
+#include <QWidget>
 #include <QTimer>
 #include <QDateTime>
 #include <QString>
@@ -12,7 +13,6 @@
 #include <QDesktopWidget>
 #include <QTextBrowser>
 #include <QKeyEvent>
-
 #include "restclk.h"
 
 namespace Ui {
@@ -30,8 +30,8 @@ public:
     RestClk *rest_clk;
 
 private:
-   QString format_rest_time;
-   QTimer *refresh_timer;    //1s刷新器
+    QString format_rest_time;
+    QTimer *refresh_timer;    //1s刷新器
 
 private slots:
     void display_rest_time();

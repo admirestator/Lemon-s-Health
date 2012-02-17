@@ -14,12 +14,13 @@ public:
     Config *confLock;
     QTimer *lock_timer;
 
+    //线程开始
+    void run();
+
 private:
     QThread *lock_thread;
     long lock_delay;
 
-    //线程开始
-    void run();
 
     //锁屏计时嚣控制
     bool lock_timer_init();

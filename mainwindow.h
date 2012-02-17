@@ -1,7 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <Qt>
 #include <QMainWindow>
+#include <QWidget>
 #include <QSystemTrayIcon>
 #include <QDesktopWidget>
 #include <QMenu>
@@ -28,7 +30,7 @@ class MainWindow : public QMainWindow
 private:
     QAction *runRest;
     QAction *minimizeAction;
-    QAction *maximizeAction;
+    //QAction *maximizeAction;
     QAction *restoreAction;
     QAction *quitAction;
 
@@ -37,7 +39,9 @@ private:
     void createActions();
     void createTrayIcon();
 
+
     Config *confAll;
+    QString old_lan;
     int old_alertTime;  //backup while changed
     short old_restTime;
     bool old_playSound;

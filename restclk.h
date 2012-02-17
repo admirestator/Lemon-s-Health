@@ -30,11 +30,6 @@ public:
 private:
     //休息定时嚣
     bool rest_timer_start();
-    /*
-    bool rest_timer_stop();
-    bool rest_timer_pause();
-    bool rest_timer_clear();
-    */
 };
 
 #endif // REST_CLK_H

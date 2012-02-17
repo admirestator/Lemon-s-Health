@@ -40,7 +40,6 @@ LockDlg::LockDlg(QWidget *parent) :
 
     //设置全屏显示(封锁屏幕)
     this->showFullScreen();
-
     this->setWindowFlags (Qt::FramelessWindowHint|Qt::CustomizeWindowHint | (Qt::Window) | Qt::WindowStaysOnTopHint);
 
     //部件居中显示
@@ -88,36 +87,30 @@ LockDlg::~LockDlg()
 
 void LockDlg::display_date()
 {
-#ifdef DEBUG
-    qDebug() << "lock dlg display date";
-//    qDebug() << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
-#endif
-
     ui->label_currenttime->setText(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
 }
 
 void LockDlg::display_rest_time()
 {
 #ifdef DEBUG
-    qDebug() << "display_rest_time";
+    qDebug() << "display_rest_time"
+             << rest_clk->rest_delay/60
+             << rest_clk->rest_delay%60;
 #endif
+
     rest_clk->update_resttime();
     ui->lcd_resttime->display(format_rest_time.sprintf("%02d:%02d", rest_clk->rest_delay/60, rest_clk->rest_delay%60));
 }
 
 void LockDlg::on_restbtn_exit_clicked()
 {
-#ifdef DEBUG
-    qDebug() << __FILE__ << " " << __FUNCTION__;
-#endif
-    //delete rest_clk;
     this->hide();
-    //this->close();
 }
-
 
 void LockDlg::keyPressEvent (QKeyEvent * event)
 {
-
-
+    if (event->key() == 27) {   //ASCII for ESC
+        qDebug() << "Got ESC!";
+    }
+    this->close();
 }

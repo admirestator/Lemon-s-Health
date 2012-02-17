@@ -35,7 +35,7 @@ RESOURCES += \
 
 TRANSLATIONS += zh_CN.ts
 
-
+RC_FILE = appicon.rc
 
 
 
