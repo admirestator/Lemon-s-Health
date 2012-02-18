@@ -1,0 +1,32 @@
+mainwindow.cpp:    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg->rest_clk->rest_timer, SLOT(stop()));
+mainwindow.cpp:    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(start()));
+mainwindow.cpp:    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
+mainwindow.cpp:    lock_dlg->show();
+mainwindow.cpp:    //lock_dlg->close();
+mainwindow.cpp:    //lock_dlg->show();
+mainwindow.cpp:    //lock_dlg->rest_clk->run();
+mainwindow.cpp:    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
+mainwindow.cpp:    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg->rest_clk->rest_timer, SLOT(stop()));
+mainwindow.cpp:    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(start()));
+mainwindow.cpp:    //lock_dlg->show();
+mainwindow.cpp:    //connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
+rest_clk:mainwindow.cpp:    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg->rest_clk->rest_timer, SLOT(stop()));
+rest_clk:mainwindow.cpp:    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(start()));
+rest_clk:mainwindow.cpp:    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
+rest_clk:mainwindow.cpp:    lock_dlg->show();
+rest_clk:mainwindow.cpp:    //lock_dlg->close();
+rest_clk:mainwindow.cpp:    //lock_dlg->show();
+rest_clk:mainwindow.cpp:    //lock_dlg->rest_clk->run();
+rest_clk:mainwindow.cpp:    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
+rest_clk:mainwindow.cpp:    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg->rest_clk->rest_timer, SLOT(stop()));
+rest_clk:mainwindow.cpp:    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(start()));
+rest_clk:mainwindow.cpp:    //lock_dlg->show();
+rest_clk:mainwindow.cpp:    //connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
+rest_clk:runclock.cpp:    QObject::connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
+rest_clk:runclock.cpp:    lock_dlg->show();
+rest_clk:runclock.cpp:    //lock_dlg->move((desktop->width() - lock_dlg->width())/2, (desktop->height() - lock_dlg->height())/2);
+rest_clk:runclock.cpp://    lock_dlg->move((QApplication::desktop().width() - lock_dlg.width())/2,
+runclock.cpp:    QObject::connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
+runclock.cpp:    lock_dlg->show();
+runclock.cpp:    //lock_dlg->move((desktop->width() - lock_dlg->width())/2, (desktop->height() - lock_dlg->height())/2);
+runclock.cpp://    lock_dlg->move((QApplication::desktop().width() - lock_dlg.width())/2,
