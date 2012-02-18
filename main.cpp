@@ -30,8 +30,7 @@ int main(int argc, char *argv[])
 
     //language
     QTranslator translator;
-   // translator.load(conf_main.language);
-    translator.load(QString("zh_CN"));
+    translator.load(conf_main.language);
             qDebug() << conf_main.language;
     app->installTranslator(&translator);
 

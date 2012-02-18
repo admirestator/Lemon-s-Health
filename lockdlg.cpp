@@ -7,14 +7,13 @@ LockDlg::LockDlg(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::LockDlg)
 {
-#ifdef DEBUG
+//#ifdef DEBUG
     qDebug() << "lock dlg constructor";
-#endif
+//#endif
 
     //透明测试
     QPalette pal = palette();
-    //修改锁屏窗口的颜色
-    //pal.setColor(QPalette::Background, QColor(61, 108, 239));
+    //修改锁屏窗口的颜�    //pal.setColor(QPalette::Background, QColor(61, 108, 239));
     pal.setColor(QPalette::Background, QColor(72, 118, 255));
     pal.setColor(QPalette::Foreground, QColor(173, 255, 47));
     setPalette(pal);
@@ -35,12 +34,11 @@ LockDlg::LockDlg(QWidget *parent) :
     //创建界面
     ui->setupUi(this);
 
-    //隐藏标题栏
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    //隐藏标题�    this->setWindowFlags(Qt::FramelessWindowHint);
 
     //设置全屏显示(封锁屏幕)
-    this->showFullScreen();
     this->setWindowFlags (Qt::FramelessWindowHint|Qt::CustomizeWindowHint | (Qt::Window) | Qt::WindowStaysOnTopHint);
+    this->showFullScreen();
 
     //部件居中显示
     ui->label_title->move((QApplication::desktop()->width() - ui->label_title->width())/2,
@@ -63,8 +61,7 @@ LockDlg::LockDlg(QWidget *parent) :
                                                        rest_clk->rest_delay/60,
                                                        rest_clk->rest_delay%60));
 
-    //锁屏时间到，退出屏幕，计时器清零
-    connect(rest_clk->rest_timer, SIGNAL(timeout()), this, SLOT(on_restbtn_exit_clicked()));
+    //锁屏时间到，退出屏幕，计时器清�    connect(rest_clk->rest_timer, SIGNAL(timeout()), this, SLOT(on_restbtn_exit_clicked()));
     connect(ui->restbtn_exit, SIGNAL(clicked()), this, SLOT(on_restbtn_exit_clicked()));
     rest_clk->run();
 

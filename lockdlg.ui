@@ -18,7 +18,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="nurse.qrc">
-    <normaloff>:/logo/EvaHealth.ico</normaloff>:/logo/EvaHealth.ico</iconset>
+    <normaloff>:/logo/baby_tux_cow.ico</normaloff>:/logo/baby_tux_cow.ico</iconset>
   </property>
   <property name="windowOpacity">
    <double>0.618000000000000</double>

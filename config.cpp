@@ -14,7 +14,7 @@ Config::Config()
     default_start_with_system = false;
     default_playSound = false;
     default_rest_with_fullscreen = false;
-    default_language = "zh_CN";
+    default_language = QString("zh_CN");
 
     alertTime = default_alertTime;
     restTime = default_restTime;
@@ -23,13 +23,14 @@ Config::Config()
     rest_with_fullscreen = default_rest_with_fullscreen;
     language = default_language;
 
-    version = QString("214");
-
+    version = QString("223");
     if (QFileInfo(FileName).exists() == false) { //first create
+        qDebug() << "not exists";
         language = QLocale::system().name();
         writeConfig();
     }
     else { //read exist config
+        qDebug() << "exists";
         readConfig();
     }
 }
@@ -46,7 +47,7 @@ void Config::readConfig()
 #ifdef DEBUG
     qDebug() << "read config";
 #endif
-    confFile->open(QIODevice::ReadOnly);
+    confFile->open(QIODevice::ReadOnly |  QIODevice::Text);
     //QTextStream inconf(confFile);
     QDataStream inconf(confFile);
 
@@ -55,8 +56,11 @@ void Config::readConfig()
     inconf >> language >> alertTime >> restTime >> playSound;
 
 #ifdef DEBUG
+//    qDebug() << "dft_lan" << "dft_altTime" << "dft_rstTime" << "dft_Sound"
+ //            << "lan"<< "altTime" << "rstTime"  << "Sound";
 
-    qDebug() << alertTime << restTime  << playSound;
+    qDebug() << default_language << default_alertTime << default_restTime << default_playSound
+             << language<< alertTime << restTime  << playSound;
 #endif
 
     confFile->close();
@@ -66,11 +70,14 @@ void Config::readConfig()
 
 void Config::writeConfig()
 {
-//#ifdef DEBUG
-    qDebug() << "write config" << alertTime << " " << restTime;
-//#endif
+#ifdef DEBUG
+    qDebug() << "write cnf";
+  //  qDebug() << "write cng"<< default_language << default_alertTime << default_restTime << default_playSound
+   //          << language<< alertTime << restTime  << playSound;
+#endif
     confFile->open(QIODevice::WriteOnly | QIODevice::Text);
     QDataStream outconf(confFile);
+    //QTextStream outconf(confFile);
 
     outconf << default_language << default_alertTime
             << default_restTime << default_playSound;

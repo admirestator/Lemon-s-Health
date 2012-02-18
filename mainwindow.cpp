@@ -15,14 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     lock_clk = new LockClk();
     lock_clk->run();
 
-    //lock_dlg = new LockDlg();
-//    run_lock_dlg();
     refresh_timer = new QTimer();
-
     refresh_timer->start(1000);
-    //system tray
-    //connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-     //          this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
 
     //config operations
     confAll = new Config();
@@ -40,12 +34,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(lock_clk->lock_timer, SIGNAL(timeout()), this, SLOT(run_lock_dlg()));
     connect(lock_clk->lock_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(stop()));
 
-//    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
-    /*
-    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg->rest_clk->rest_timer, SLOT(stop()));
-    */
-
+    //create ui
     ui->setupUi(this);
+
     //main menu
     ui->labelAlertTime->setText(QString::number(confAll->alertTime, 10));
     ui->labelRestTime->setText(QString::number(confAll->restTime, 10));
@@ -80,10 +71,8 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     else {
         ui->radioButton_zhCN->setChecked(false);
+        ui->radioButton_enUS->setChecked(true);
     }
-
-    //ui->radioButton_zhCN
-    //ui->radioButton_enUS
 
 #ifdef DEBUG
     qDebug() << confAll->version;
@@ -109,7 +98,7 @@ MainWindow::MainWindow(QWidget *parent) :
     trayIcon->show();
     qDebug() << "sound" << " " << QSound::isAvailable();
     if(QSound::isAvailable()== true) {
-        QSound::play(QString("canonind.wav"));
+       QSound::play(QString("canonind.wav"));
     }
 }
 
@@ -137,12 +126,6 @@ void MainWindow::createActions()
 
     minimizeAction = new QAction(tr("Mi&nimize"), this);
     connect(minimizeAction, SIGNAL(triggered()), this, SLOT(hide()));
-//    connect(minimizeAction, SIGNAL(triggered()), trayIcon,
- //           SLOT(showMessage(QString("Name"), QString("Lemon's Health is running background."))));
-            //                 trayIcon, 10000)));
-
-    //maximizeAction = new QAction(tr("Ma&ximize"), this);
-    //connect(maximizeAction, SIGNAL(triggered()), this, SLOT(showMaximized()));
 
     restoreAction = new QAction(tr("&Restore"), this);
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(showNormal()));
@@ -156,35 +139,28 @@ void MainWindow::createTrayIcon()
     trayIconMenu = new QMenu(this);
     trayIconMenu->addAction(runRest);
     trayIconMenu->addAction(minimizeAction);
-    //trayIconMenu->addAction(maximizeAction);
     trayIconMenu->addAction(restoreAction);
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(quitAction);
 
     trayIcon = new QSystemTrayIcon(this);
     trayIcon->setContextMenu(trayIconMenu);
-    trayIcon->setIcon(QIcon("baby_tux_cow.ico"));
-    //trayIcon->showMessage(QString("Name"), QString("Lemon's Health is running background."), QSystemTrayIcon::Information, 100000);
-   // trayIcon->showMessage(QString("Name"), QString("Lemon's Health is running background."), trayIcon->Information, 100000);
-    //trayIcon->showMessage("Name","Lemon's Health?", trayIcon->Information, 1000);
-
-    /*
-    connect(trayIcon, SIGNAL(messageClicked()), trayIcon,
-            SLOT(showMessage(QString("Name"), QString("Lemon's Health is running background."), trayIcon->Information, 1000)));
-    connect(minimizeAction, SIGNAL(triggered()), trayIcon,
-            SLOT(showMessage("Name", "Lemon's Health is running background.")));
-            */
+    trayIcon->setContextMenu(trayIconMenu);
+    trayIcon->setIcon(QIcon("zafx.svg"));
+    trayIcon->show();
+    connect(trayIcon,SIGNAL(messageClicked()),this,SLOT(show()));
 }
-
 
 void MainWindow::run_lock_dlg()
 {
 
+//    LockDlg *lock_dlg_tmp = lock_dlg;
     lock_dlg = new LockDlg();
-    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg->rest_clk->rest_timer, SLOT(stop()));
-//    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(lock_clk->lock_timer->stop()));
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(start()));
+    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
+
+   // delete lock_dlg_tmp;
     lock_dlg->show();
 
     qDebug() << "run lock dlg";
@@ -201,7 +177,7 @@ void MainWindow::on_pushbtn_exit_clicked()
     qDebug() << "user exit";
 #endif
     emit app_quit();
-    lock_dlg->close();
+    //lock_dlg->close();
 }
 
 void MainWindow::on_pushbtn_run_clicked()
@@ -211,7 +187,9 @@ void MainWindow::on_pushbtn_run_clicked()
 #endif
     this->hide();
     //lock_dlg->show();
+   // delete lock_dlg;
     run_lock_dlg();
+
 
 }
 
@@ -227,13 +205,14 @@ void MainWindow::updateConfValue()
 
     confAll->alertTime = ui->spinBoxAlertTime->value();
     confAll->restTime = ui->spinBoxRestTime->value();
+
     //playsound was set in on_checkboxplaysound_clicked()
     confAll->writeConfig();
 
-//#ifdef DEBUG
+#ifdef DEBUG
     qDebug() << confAll->alertTime;
     qDebug() << confAll->restTime;
-//#endif
+#endif
 }
 
 
@@ -260,11 +239,9 @@ void MainWindow::pushbutton_defaults()
 
 void MainWindow::pushbutton_apply()
 {
-//#ifdef DEBUG
-    qDebug() << "apply"
-             << ui->labelAlertTime
-             << ui->labelRestTime;
-//#endif
+#ifdef DEBUG
+    qDebug() << "apply";
+#endif
 
 //    old_lan = ;
     old_alertTime = confAll->alertTime;  //backup while changed
@@ -279,15 +256,17 @@ void MainWindow::pushbutton_apply()
 
     //update rest timer and lock timer here
     //lock_dlg->rest_clk->run();
-    delete lock_dlg;
+    //delete lock_dlg;
 
+    /*
     lock_dlg = new LockDlg();
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg->rest_clk->rest_timer, SLOT(stop()));
 
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(start()));
+    */
     //lock_dlg->show();
-    connect(lock_clk->lock_timer, SIGNAL(timeout()), lock_dlg, SLOT(show()));
+    //connect(lock_clk->lock_timer, SIGNAL(timeout()), lock_dlg, SLOT(show()));
     //connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
 //    run_lock_dlg();
 }
