@@ -58,11 +58,11 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->checkBoxPlaySound->setCheckState(Qt::Unchecked);
     }
 
-    if (confAll->rest_with_fullscreen) {
-        ui->checkBox_fullscreen->setCheckState(Qt::Checked);
+    if (confAll->show_startup) {
+        ui->checkBoxShowStartup->setCheckState(Qt::Checked);
     }
     else {
-        ui->checkBox_fullscreen->setCheckState(Qt::Unchecked);
+        ui->checkBoxShowStartup->setCheckState(Qt::Unchecked);
     }
 
     if (confAll->language == QString("zh_CN")) {
@@ -77,11 +77,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //background color control
     connect(ui->pushButtonChangeBGColor, SIGNAL(clicked()), this, SLOT(change_bg_color()));
-    //ui->pushButtonChangeBGColor->setPalette(QPalette(Qt::green));
     ui->pushButtonChangeBGColor->setPalette(QPalette(QColor(confAll->bg_colorR, confAll->bg_colorG, confAll->bg_colorB)));
+
     //foreground color control
     connect(ui->pushButtonChangeFGColor, SIGNAL(clicked()), this, SLOT(change_fg_color()));
-    //ui->pushButtonChangeFGColor->setPalette(QPalette(Qt::green));
     ui->pushButtonChangeFGColor->setPalette(QPalette(QColor(confAll->fg_colorR, confAll->fg_colorG, confAll->fg_colorB)));
 
 #ifdef DEBUG
@@ -99,6 +98,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->spinBoxRestTime, SIGNAL(valueChanged(int)), this, SLOT(updateConfValue()));
     connect(ui->checkBoxPlaySound, SIGNAL(stateChanged(int)),
             this, SLOT(checkBoxPlaySound_clicked()));
+
+    connect(ui->checkBoxShowStartup, SIGNAL(stateChanged(int)),
+            this, SLOT(checkBoxShowStartup_clicked()));
 
     //config menu buttons
     connect(ui->pushButtonDefaults, SIGNAL(clicked()), this, SLOT(pushbutton_defaults()));
@@ -163,8 +165,6 @@ void MainWindow::createTrayIcon()
 
 void MainWindow::run_lock_dlg()
 {
-
-//    LockDlg *lock_dlg_tmp = lock_dlg;
     lock_dlg = new LockDlg();
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg->rest_clk->rest_timer, SLOT(stop()));
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(start()));
@@ -173,7 +173,10 @@ void MainWindow::run_lock_dlg()
    // delete lock_dlg_tmp;
     lock_dlg->show();
 
+
+#ifdef DEBUG
     qDebug() << "run lock dlg";
+#endif
 }
 
 void MainWindow::on_pushbtn_update_clicked()
@@ -196,11 +199,7 @@ void MainWindow::on_pushbtn_run_clicked()
     qDebug() << "show lock dialg";
 #endif
     this->hide();
-    //lock_dlg->show();
-   // delete lock_dlg;
     run_lock_dlg();
-
-
 }
 
 
@@ -287,9 +286,23 @@ void MainWindow::pushbutton_rejected()
 void MainWindow::checkBoxPlaySound_clicked()
 {
     confAll->playSound = ui->checkBoxPlaySound->isChecked();
+    //confAll->write();
+
+#ifdef DEBUG
     qDebug() << confAll->playSound << ui->checkBoxPlaySound->checkState();
+#endif
 }
 
+
+void MainWindow::checkBoxShowStartup_clicked()
+{
+    confAll->show_startup = ui->checkBoxShowStartup->isChecked();
+    //confAll->write();
+
+#ifdef DEBUG
+    qDebug() << confAll->playSound << ui->checkBoxPlaySound->checkState();
+#endif
+}
 
 
 void MainWindow::change_bg_color()

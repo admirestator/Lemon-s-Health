@@ -7,16 +7,25 @@ LockDlg::LockDlg(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::LockDlg)
 {
-//#ifdef DEBUG
+#ifdef DEBUG
     qDebug() << "lock dlg constructor";
-//#endif
+#endif
+
+    confLockDlg = new Config();
+    confLockDlg->readConfig();
 
     //透明测试
     QPalette pal = palette();
-    //修改锁屏窗口的颜�    //pal.setColor(QPalette::Background, QColor(61, 108, 239));
-    pal.setColor(QPalette::Background, QColor(72, 118, 255));
-    pal.setColor(QPalette::Foreground, QColor(173, 255, 47));
+    //修改锁屏窗口的颜色
+    pal.setColor(QPalette::Background, QColor(confLockDlg->bg_colorR, confLockDlg->bg_colorG, confLockDlg->bg_colorB));
+    pal.setColor(QPalette::Foreground, QColor(confLockDlg->fg_colorR, confLockDlg->fg_colorG, confLockDlg->fg_colorB));
     setPalette(pal);
+
+#ifdef DEBUG
+    qDebug() << "dlg debug: "
+             << confLockDlg->bg_colorR << confLockDlg->bg_colorG << confLockDlg->bg_colorB
+             << confLockDlg->fg_colorR << confLockDlg->fg_colorG << confLockDlg->fg_colorB;
+#endif
 
     rest_clk = new RestClk();
     refresh_timer = new QTimer();
@@ -34,7 +43,8 @@ LockDlg::LockDlg(QWidget *parent) :
     //创建界面
     ui->setupUi(this);
 
-    //隐藏标题�    this->setWindowFlags(Qt::FramelessWindowHint);
+    //隐藏标题
+    this->setWindowFlags(Qt::FramelessWindowHint);
 
     //设置全屏显示(封锁屏幕)
     this->setWindowFlags (Qt::FramelessWindowHint|Qt::CustomizeWindowHint | (Qt::Window) | Qt::WindowStaysOnTopHint);
@@ -61,8 +71,15 @@ LockDlg::LockDlg(QWidget *parent) :
                                                        rest_clk->rest_delay/60,
                                                        rest_clk->rest_delay%60));
 
-    //锁屏时间到，退出屏幕，计时器清�    connect(rest_clk->rest_timer, SIGNAL(timeout()), this, SLOT(on_restbtn_exit_clicked()));
+    //锁屏时间到，退出屏幕，计时器清
+    connect(rest_clk->rest_timer, SIGNAL(timeout()), this, SLOT(on_restbtn_exit_clicked()));
     connect(ui->restbtn_exit, SIGNAL(clicked()), this, SLOT(on_restbtn_exit_clicked()));
+
+    //播放音乐
+    sound_name = "canonind.wav";
+    sound = new QSound(sound_name);
+    execPlaySound(QString(sound_name));
+
     rest_clk->run();
 
 #ifdef DEBUG
@@ -76,9 +93,11 @@ LockDlg::~LockDlg()
     qDebug() << "destery lockdlg";
 #endif
 
+    on_restbtn_exit_clicked();
     delete refresh_timer;
     delete rest_clk;
     delete ui;
+    delete confLockDlg;
 }
 
 
@@ -101,6 +120,16 @@ void LockDlg::display_rest_time()
 
 void LockDlg::on_restbtn_exit_clicked()
 {
+#ifdef Q_OS_MAC //Mac OS X platfrom
+    sound->stop();
+#else
+    #ifdef WIN32 //windows platfrom
+        sound->stop();
+    #else //linux platfrom
+        system("pkill -9 aplay");
+    #endif
+#endif
+    execPlaySound(QString("complete.wav"));
     this->hide();
 }
 
@@ -110,4 +139,24 @@ void LockDlg::keyPressEvent (QKeyEvent * event)
         qDebug() << "Got ESC!";
     }
     this->close();
+}
+
+//got it from the libfetion source code
+void LockDlg::execPlaySound(QString music)
+{
+#ifdef Q_OS_MAC //Mac OS X platfrom
+    //QSound::play(music);
+    //sound->play(music);
+    sound->play();
+#else
+    #ifdef WIN32 //windows platfrom
+        //QSound::play(music);
+    //sound->play(music);
+    sound->play();
+    #else //linux platfrom
+        QString cmd;
+        cmd = "aplay " + music + "&";
+        system(cmd.toStdString().c_str());
+     #endif
+#endif
 }

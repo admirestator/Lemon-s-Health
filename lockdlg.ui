@@ -78,7 +78,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Exit</string>
+     <string>Leave</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_tips">
@@ -96,7 +96,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Click to EXIT</string>
+     <string>Click to LEAVE</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_currenttime">

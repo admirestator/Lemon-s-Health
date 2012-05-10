@@ -12,8 +12,8 @@ Config::Config()
     default_alertTime = 50;
     default_restTime = 3;
     default_start_with_system = false;
-    default_playSound = false;
-    default_rest_with_fullscreen = false;
+    default_playSound = true;
+    default_show_startup = false;
     default_language = QString("zh_CN");
 
     alertTime = default_alertTime;
@@ -42,17 +42,21 @@ Config::Config()
 
     start_with_system = default_start_with_system;
     playSound = default_playSound;
-    rest_with_fullscreen = default_rest_with_fullscreen;
+    show_startup = default_show_startup;
     language = default_language;
 
     version = QString("223");
     if (QFileInfo(FileName).exists() == false) { //first create
+#ifdef DEBUG
         qDebug() << "not exists";
+#endif
         language = QLocale::system().name();
         writeConfig();
     }
     else { //read exist config
+#ifdef DEBUG
         qDebug() << "exists";
+#endif
         readConfig();
     }
 }
@@ -74,27 +78,23 @@ void Config::readConfig()
     QDataStream inconf(confFile);
 
     inconf >> default_language >> default_alertTime
-           >> default_restTime >> default_playSound
-           >> language >> alertTime >> restTime >> playSound
+           >> default_restTime >> default_playSound >> default_show_startup
+           >> language >> alertTime >> restTime >> playSound >> show_startup
            >> default_bg_colorR >> default_bg_colorG >> default_bg_colorB
            >> default_fg_colorR >> default_fg_colorG >> default_fg_colorB
            >> bg_colorR >> bg_colorG >> bg_colorB
-           >> fg_colorR >> fg_colorG >> bg_colorB;
-
-
-#ifdef DEBUG
-//    qDebug() << "dft_lan" << "dft_altTime" << "dft_rstTime" << "dft_Sound"
- //            << "lan"<< "altTime" << "rstTime"  << "Sound";
-
-    qDebug() << "read debug: "
-             << default_language << default_alertTime << default_restTime << default_playSound
-             << language<< alertTime << restTime  << playSound
-             << default_bg_colorR << default_bg_colorG << default_bg_colorB
-             << default_fg_colorR << default_fg_colorG << default_fg_colorB;
-#endif
+           >> fg_colorR >> fg_colorG >> fg_colorB;
 
     confFile->close();
 
+#ifdef DEBUG
+    qDebug() << "read debug: "
+             << default_language << default_alertTime
+             << default_restTime << default_playSound << default_show_startup
+             << language<< alertTime << restTime  << playSound << show_startup
+             << default_bg_colorR << default_bg_colorG << default_bg_colorB
+             << default_fg_colorR << default_fg_colorG << default_fg_colorB;
+#endif
 }
 
 
@@ -105,27 +105,24 @@ void Config::writeConfig()
   //  qDebug() << "write cng"<< default_language << default_alertTime << default_restTime << default_playSound
    //          << language<< alertTime << restTime  << playSound;
 #endif
+
     confFile->open(QIODevice::WriteOnly | QIODevice::Text);
     QDataStream outconf(confFile);
-    //QTextStream outconf(confFile);
 
     outconf << default_language << default_alertTime
-            << default_restTime << default_playSound
-            << language << alertTime << restTime << playSound
+            << default_restTime << default_playSound << default_show_startup
+            << language << alertTime << restTime << playSound << show_startup
             << default_bg_colorR << default_bg_colorG << default_bg_colorB
             << default_fg_colorR << default_fg_colorG << default_fg_colorB
             << bg_colorR << bg_colorG << bg_colorB
             << fg_colorR << fg_colorG << fg_colorB;
     confFile->close();
 
-
 #ifdef DEBUG
-    //    qDebug() << "dft_lan" << "dft_altTime" << "dft_rstTime" << "dft_Sound"
-     //            << "lan"<< "altTime" << "rstTime"  << "Sound";
-
         qDebug() << "write debug: "
-                 << default_language << default_alertTime << default_restTime << default_playSound
-                 << language<< alertTime << restTime  << playSound
+                 << default_language << default_alertTime
+                 << default_restTime << default_playSound << default_show_startup
+                 << language << alertTime << restTime << playSound << show_startup
                  << default_bg_colorR << default_bg_colorG << default_bg_colorB
                  << default_fg_colorR << default_fg_colorG << default_fg_colorB
                  << bg_colorR << bg_colorG << bg_colorB
@@ -150,6 +147,7 @@ void Config::restoreConfig()
     alertTime = default_alertTime; //minute
     restTime = default_restTime;
     playSound = default_restTime;
+
     writeConfig();
 }
 

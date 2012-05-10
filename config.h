@@ -27,7 +27,7 @@ public:
     unsigned short default_fg_colorB;
     bool default_start_with_system;
     bool default_playSound;
-    bool default_rest_with_fullscreen;
+    bool default_show_startup;
     QString default_language;
 
 
@@ -41,7 +41,7 @@ public:
     unsigned short fg_colorB;
     bool start_with_system;
     bool playSound;
-    bool rest_with_fullscreen;
+    bool show_startup;
     QString language;
 
     QString version;

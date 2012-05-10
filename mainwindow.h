@@ -73,6 +73,7 @@ private slots:
     void pushbutton_apply();
     void pushbutton_rejected();
     void checkBoxPlaySound_clicked();
+    void checkBoxShowStartup_clicked();
     void on_pushbtn_update_clicked();
     void change_bg_color();
     void change_fg_color();

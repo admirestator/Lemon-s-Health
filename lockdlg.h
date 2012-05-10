@@ -10,10 +10,12 @@
 #include <QUrl>
 #include <QPalette>
 #include <QColor>
+#include <QSound>
 #include <QDesktopWidget>
 #include <QTextBrowser>
 #include <QKeyEvent>
 #include "restclk.h"
+//#include "config.h"
 
 namespace Ui {
     class LockDlg;
@@ -30,14 +32,18 @@ public:
     RestClk *rest_clk;
 
 private:
+    Config *confLockDlg;
     QString format_rest_time;
     QTimer *refresh_timer;    //1s刷新器
+    QString sound_name;
+    QSound *sound;
 
 private slots:
     void display_rest_time();
     void display_date();
     void on_restbtn_exit_clicked();
     void keyPressEvent (QKeyEvent * event);
+    void execPlaySound(QString music);
 
 private:
     Ui::LockDlg *ui;
