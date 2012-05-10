@@ -14,6 +14,8 @@
 #include <QDate>
 #include <QSound>
 #include <QDebug>
+#include <QColor>
+#include <QColorDialog>
 
 #include "lockclk.h"
 #include "lockdlg.h"
@@ -28,6 +30,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 private:
+    QColor color4all;
     QAction *runRest;
     QAction *minimizeAction;
     //QAction *maximizeAction;
@@ -67,14 +70,12 @@ public slots:
 
 private slots:
     void pushbutton_defaults();
-
     void pushbutton_apply();
-
     void pushbutton_rejected();
-
     void checkBoxPlaySound_clicked();
-
     void on_pushbtn_update_clicked();
+    void change_bg_color();
+    void change_fg_color();
 
 private:
     Ui::MainWindow *ui;

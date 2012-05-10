@@ -74,6 +74,16 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->radioButton_enUS->setChecked(true);
     }
 
+
+    //background color control
+    connect(ui->pushButtonChangeBGColor, SIGNAL(clicked()), this, SLOT(change_bg_color()));
+    //ui->pushButtonChangeBGColor->setPalette(QPalette(Qt::green));
+    ui->pushButtonChangeBGColor->setPalette(QPalette(QColor(confAll->bg_colorR, confAll->bg_colorG, confAll->bg_colorB)));
+    //foreground color control
+    connect(ui->pushButtonChangeFGColor, SIGNAL(clicked()), this, SLOT(change_fg_color()));
+    //ui->pushButtonChangeFGColor->setPalette(QPalette(Qt::green));
+    ui->pushButtonChangeFGColor->setPalette(QPalette(QColor(confAll->fg_colorR, confAll->fg_colorG, confAll->fg_colorB)));
+
 #ifdef DEBUG
     qDebug() << confAll->version;
 #endif
@@ -218,9 +228,13 @@ void MainWindow::updateConfValue()
 
 void MainWindow::pushbutton_defaults()
 {
+    confAll->restoreConfig();
+
+    /*
     confAll->alertTime = confAll->default_alertTime;
     confAll->restTime = confAll->default_restTime;
     confAll->playSound = confAll->default_playSound;
+    */
 
     //main-windowsome
     ui->labelAlertTime->setText(QString::number(confAll->alertTime, 10));
@@ -229,6 +243,19 @@ void MainWindow::pushbutton_defaults()
 
     ui->spinBoxAlertTime->setValue(confAll->default_alertTime);
     ui->spinBoxRestTime->setValue(confAll->default_restTime);
+
+    //change lock screen color
+    //change_bg_color();
+    //change_fg_color();
+
+
+    //default color
+    ui->pushButtonChangeBGColor->setPalette(QPalette(QColor(confAll->bg_colorR,
+                                                            confAll->bg_colorG,
+                                                            confAll->bg_colorB)));
+    ui->pushButtonChangeFGColor->setPalette(QPalette(QColor(confAll->fg_colorR,
+                                                            confAll->fg_colorG,
+                                                            confAll->fg_colorB)));
 
 #ifdef DEBUG
     qDebug() << "resetore to default";
@@ -291,3 +318,26 @@ void MainWindow::checkBoxPlaySound_clicked()
     qDebug() << confAll->playSound << ui->checkBoxPlaySound->checkState();
 }
 
+
+
+void MainWindow::change_bg_color()
+{
+    color4all = QColorDialog::getColor(Qt::white, this);
+    confAll->bg_colorR = color4all.red();
+    confAll->bg_colorG = color4all.green();
+    confAll->bg_colorB = color4all.blue();
+
+    ui->pushButtonChangeBGColor->setPalette(QPalette(QColor(confAll->bg_colorR, confAll->bg_colorG, confAll->bg_colorB)));
+
+}
+
+void MainWindow::change_fg_color()
+{
+    color4all = QColorDialog::getColor(Qt::white, this);
+    confAll->fg_colorR = color4all.red();
+    confAll->fg_colorG = color4all.green();
+    confAll->fg_colorB = color4all.blue();
+
+    ui->pushButtonChangeFGColor->setPalette(QPalette(QColor(confAll->fg_colorR, confAll->fg_colorG, confAll->fg_colorB)));
+
+}
