@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>506</width>
-    <height>341</height>
+    <width>524</width>
+    <height>348</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>491</width>
+      <width>501</width>
       <height>311</height>
      </rect>
     </property>
@@ -31,7 +31,7 @@
      <enum>QTabWidget::West</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -164,7 +164,7 @@
        <rect>
         <x>100</x>
         <y>220</y>
-        <width>221</width>
+        <width>247</width>
         <height>71</height>
        </rect>
       </property>
@@ -232,7 +232,7 @@
        <rect>
         <x>320</x>
         <y>190</y>
-        <width>88</width>
+        <width>89</width>
         <height>16</height>
        </rect>
       </property>
@@ -274,8 +274,8 @@
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>80</y>
+        <x>30</x>
+        <y>70</y>
         <width>132</width>
         <height>71</height>
        </rect>
@@ -315,9 +315,9 @@
       <property name="geometry">
        <rect>
         <x>70</x>
-        <y>240</y>
+        <y>270</y>
         <width>297</width>
-        <height>24</height>
+        <height>25</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -347,20 +347,20 @@
      <widget class="QLabel" name="label_lan_tip">
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>190</y>
+        <x>300</x>
+        <y>40</y>
         <width>151</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>Take effect after relunch</string>
+       <string>effects after relunch</string>
       </property>
      </widget>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>280</x>
         <y>70</y>
         <width>201</width>
         <height>111</height>
@@ -405,6 +405,78 @@
          </property>
          <property name="tristate">
           <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>50</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Time Setting</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_22">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>170</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Color Setting</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>31</x>
+        <y>190</y>
+        <width>181</width>
+        <height>57</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_bg_color">
+         <property name="text">
+          <string>BackgroundColor</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="pushButtonChangeBGColor">
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Change</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_fg_color">
+         <property name="text">
+          <string>ForegroundColor</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pushButtonChangeBGColor_2">
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Change</string>
          </property>
         </widget>
        </item>
