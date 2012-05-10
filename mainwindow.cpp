@@ -230,12 +230,6 @@ void MainWindow::pushbutton_defaults()
 {
     confAll->restoreConfig();
 
-    /*
-    confAll->alertTime = confAll->default_alertTime;
-    confAll->restTime = confAll->default_restTime;
-    confAll->playSound = confAll->default_playSound;
-    */
-
     //main-windowsome
     ui->labelAlertTime->setText(QString::number(confAll->alertTime, 10));
     ui->labelRestTime->setText(QString::number(confAll->restTime, 10));
@@ -243,11 +237,6 @@ void MainWindow::pushbutton_defaults()
 
     ui->spinBoxAlertTime->setValue(confAll->default_alertTime);
     ui->spinBoxRestTime->setValue(confAll->default_restTime);
-
-    //change lock screen color
-    //change_bg_color();
-    //change_fg_color();
-
 
     //default color
     ui->pushButtonChangeBGColor->setPalette(QPalette(QColor(confAll->bg_colorR,
@@ -270,39 +259,22 @@ void MainWindow::pushbutton_apply()
     qDebug() << "apply";
 #endif
 
-//    old_lan = ;
     old_alertTime = confAll->alertTime;  //backup while changed
     old_restTime = confAll->restTime;
     old_playSound = confAll->playSound;
 
     ui->labelAlertTime->setText(QString::number(confAll->alertTime, 10));
     ui->labelRestTime->setText(QString::number(confAll->restTime, 10));
-  //  confAll->alertTime =
-   // confAll->rsetTime =
     confAll->writeConfig();
-
-    //update rest timer and lock timer here
-    //lock_dlg->rest_clk->run();
-    //delete lock_dlg;
-
-    /*
-    lock_dlg = new LockDlg();
-    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
-    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg->rest_clk->rest_timer, SLOT(stop()));
-
-    connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(start()));
-    */
-    //lock_dlg->show();
-    //connect(lock_clk->lock_timer, SIGNAL(timeout()), lock_dlg, SLOT(show()));
-    //connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
-//    run_lock_dlg();
 }
 
 void MainWindow::pushbutton_rejected()
 {
-    confAll->alertTime = old_alertTime; //update backup value
+    //update backup value
+    confAll->alertTime = old_alertTime;
     confAll->restTime = old_restTime;
     confAll->playSound = old_playSound;
+
     //update mainmenu value
     ui->spinBoxAlertTime->setValue(confAll->alertTime);
     ui->spinBoxRestTime->setValue(confAll->restTime);
@@ -327,7 +299,9 @@ void MainWindow::change_bg_color()
     confAll->bg_colorG = color4all.green();
     confAll->bg_colorB = color4all.blue();
 
-    ui->pushButtonChangeBGColor->setPalette(QPalette(QColor(confAll->bg_colorR, confAll->bg_colorG, confAll->bg_colorB)));
+    ui->pushButtonChangeBGColor->setPalette(QPalette(QColor(confAll->bg_colorR,
+                                                            confAll->bg_colorG,
+                                                            confAll->bg_colorB)));
 
 }
 
@@ -338,6 +312,7 @@ void MainWindow::change_fg_color()
     confAll->fg_colorG = color4all.green();
     confAll->fg_colorB = color4all.blue();
 
-    ui->pushButtonChangeFGColor->setPalette(QPalette(QColor(confAll->fg_colorR, confAll->fg_colorG, confAll->fg_colorB)));
-
+    ui->pushButtonChangeFGColor->setPalette(QPalette(QColor(confAll->fg_colorR,
+                                                            confAll->fg_colorG,
+                                                            confAll->fg_colorB)));
 }
