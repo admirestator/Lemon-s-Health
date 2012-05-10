@@ -81,7 +81,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QWidget" name="layoutWidget1">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -159,7 +159,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="layoutWidget2">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>100</x>
@@ -201,7 +201,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="layoutWidget9">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>170</x>
@@ -227,7 +227,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="layoutWidget3">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>320</x>
@@ -271,7 +271,7 @@
        <string>Config Menu</string>
       </property>
      </widget>
-     <widget class="QWidget" name="layoutWidget4">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -311,7 +311,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="layoutWidget5">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>80</x>
@@ -357,7 +357,7 @@
        <string>System Setting (effects after relunch)</string>
       </property>
      </widget>
-     <widget class="QWidget" name="layoutWidget6">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>260</x>
@@ -436,7 +436,7 @@
        <string>Color Setting</string>
       </property>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>31</x>
@@ -593,7 +593,7 @@ rest while you had been sat from the computer.It was inspired by the
 I release it as a speciall present for Lemon today!</string>
       </property>
      </widget>
-     <widget class="QWidget" name="layoutWidget7">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>20</x>

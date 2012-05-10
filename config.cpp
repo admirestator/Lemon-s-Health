@@ -45,7 +45,7 @@ Config::Config()
     show_startup = default_show_startup;
     language = default_language;
 
-    version = QString("223");
+    version = QString("510");
     if (QFileInfo(FileName).exists() == false) { //first create
 #ifdef DEBUG
         qDebug() << "not exists";

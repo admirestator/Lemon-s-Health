@@ -15,13 +15,18 @@
     </message>
     <message>
         <location filename="lockdlg.ui" line="81"/>
+        <source>Leave</source>
+        <translation>离开</translation>
+    </message>
+    <message>
         <source>Exit</source>
-        <translation>退出</translation>
+        <translation type="obsolete">退出</translation>
     </message>
     <message>
         <location filename="lockdlg.ui" line="99"/>
-        <source>Click to EXIT</source>
-        <translation>点击可退出</translation>
+        <source>Click to LEAVE</source>
+        <oldsource>Click to EXIT</oldsource>
+        <translation>点击可离开</translation>
     </message>
     <message>
         <location filename="lockdlg.ui" line="117"/>
@@ -100,18 +105,24 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="357"/>
-        <source>Take effect after relunch</source>
-        <translation>重启后生效</translation>
+        <source>System Setting (effects after relunch)</source>
+        <oldsource>Take effect after relunch</oldsource>
+        <translation>系统设置（重启后生效）</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="380"/>
+        <source>Show on startup</source>
+        <translation>启动时显示主菜单</translation>
     </message>
     <message utf8="true">
         <location filename="mainwindow.ui" line="387"/>
         <source>简体中文</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="394"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="401"/>
@@ -119,7 +130,33 @@
         <translation>开机启动</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="422"/>
+        <location filename="mainwindow.ui" line="423"/>
+        <source>Time Setting</source>
+        <translation>时间设置</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="436"/>
+        <source>Color Setting</source>
+        <translation>色彩设置</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="452"/>
+        <source>BackgroundColor</source>
+        <translation>背景颜色</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="462"/>
+        <location filename="mainwindow.ui" line="479"/>
+        <source>Change</source>
+        <translation>修改</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="469"/>
+        <source>ForegroundColor</source>
+        <translation>前景颜色</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="500"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -138,7 +175,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. How to use this program?&lt;br /&gt;Just start it and leave it alone. &lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;4. What is alert time?&lt;br /&gt;it means how long you will have a rest. &lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;5. What is rest time?&lt;br /&gt;It means how much time you will take for a rest.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
-        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;LiHei Pro&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -149,7 +186,32 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;5. What is rest time?&lt;br /&gt;是指一次休息多长时间。 &lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="512"/>
+        <location filename="mainwindow.ui" line="526"/>
+        <source>    Copyright (C) &lt;2012&gt;  &lt;admirestator&gt;
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&quot;&gt;.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="558"/>
+        <source>The images of this program came from the Internet, if
+it harms your rights, please contact me, I will change it.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="590"/>
         <source>Lemon&apos;s Health is a program written with Qt that can alert you to have a
 rest while you had been sat from the computer.It was inspired by the
 &quot;workrave&quot;.Which is also a famouse software written in GTK.
@@ -181,12 +243,6 @@ rest while you had been sat from the computer.It was inspired by the
         <location filename="mainwindow.ui" line="271"/>
         <source>Config Menu</source>
         <translation>配置菜单</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="480"/>
-        <source>The images of this program came from the Internet, if it harms your 
-rights, please contact me, I will change it.</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -237,129 +293,108 @@ p, li { white-space: pre-wrap; }
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="380"/>
         <source>Full screen while rest</source>
-        <translation>休息时全屏</translation>
+        <translation type="obsolete">休息时全屏</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="410"/>
+        <location filename="mainwindow.ui" line="488"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="436"/>
+        <location filename="mainwindow.ui" line="514"/>
         <source>license</source>
         <translation>协议</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="448"/>
-        <source>    Copyright (C) &lt;2012&gt;  &lt;admirestator&gt;
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="487"/>
+        <location filename="mainwindow.ui" line="565"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="552"/>
+        <location filename="mainwindow.ui" line="630"/>
         <source>Blog:</source>
         <translation>博客</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="499"/>
+        <location filename="mainwindow.ui" line="577"/>
         <source>About Lemon&apos;s Health</source>
         <translation>关于Lemon&apos;s Health</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="531"/>
+        <location filename="mainwindow.ui" line="609"/>
         <source>Project Page:</source>
         <translation>项目主页</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="538"/>
+        <location filename="mainwindow.ui" line="616"/>
         <source>https://github.com/admirestator/Lemon-s-health</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="545"/>
+        <location filename="mainwindow.ui" line="623"/>
         <source>Author:</source>
         <translation>作者：</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="559"/>
+        <location filename="mainwindow.ui" line="637"/>
         <source>http://admirestator.diandian.com</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="566"/>
+        <location filename="mainwindow.ui" line="644"/>
         <source>GooglePlus:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="573"/>
+        <location filename="mainwindow.ui" line="651"/>
         <source>https://plus.google.com/u/0/107811042264601559587/posts</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="580"/>
+        <location filename="mainwindow.ui" line="658"/>
         <source>admirestator &lt;admirestator@gmail.com&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="592"/>
+        <location filename="mainwindow.ui" line="670"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="104"/>
+        <location filename="mainwindow.cpp" line="136"/>
         <source>&amp;Run</source>
         <translation>运行</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="107"/>
+        <location filename="mainwindow.cpp" line="139"/>
         <source>Mi&amp;nimize</source>
         <translation>最小化</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="110"/>
         <source>Ma&amp;ximize</source>
-        <translation>最大化</translation>
+        <translation type="obsolete">最大化</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="113"/>
+        <location filename="mainwindow.cpp" line="142"/>
         <source>&amp;Restore</source>
         <translation>还原</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="116"/>
+        <location filename="mainwindow.cpp" line="145"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished">退出</translation>
+        <translation>退出</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="main.cpp" line="24"/>
+        <location filename="main.cpp" line="26"/>
         <source>Systray</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="main.cpp" line="25"/>
+        <location filename="main.cpp" line="27"/>
         <source>I couldn&apos;t detect any system tray on this system.</source>
         <translation></translation>
     </message>

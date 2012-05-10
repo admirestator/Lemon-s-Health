@@ -4,6 +4,8 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QDebug>
+//#include <Phonon/MediaObject>
+//#include <Phonon/VideoPlayer>
 
 #include "lockclk.h"
 #include "lockdlg.h"
@@ -16,8 +18,8 @@ int main(int argc, char *argv[])
 {
 
     //read config
-    Config conf_main;
-    conf_main.readConfig();
+    Config confMain;
+    confMain.readConfig();
 
     QApplication *app = new QApplication(argc, argv);
     if (!QSystemTrayIcon::isSystemTrayAvailable()) {
@@ -30,8 +32,8 @@ int main(int argc, char *argv[])
 
     //language
     QTranslator translator;
-    translator.load(conf_main.language);
-            qDebug() << conf_main.language;
+    translator.load(confMain.language);
+            qDebug() << confMain.language;
     app->installTranslator(&translator);
 
     //create main window
@@ -42,7 +44,18 @@ int main(int argc, char *argv[])
     QObject::connect(main_window, SIGNAL(app_quit()), app, SLOT(quit()));
 
     //锁屏时间间隔到开始锁屏
-    main_window->show();
+    if (confMain.show_startup)
+        main_window->show();
+
+
+
+   //phonon test
+    //Phonon::AudioOutput *audioOutput =
+     //        new Phonon::AudioOutput(Phonon::VideoCategory, this);
+    //Phonon::createPath("./canon.aac", audioOutput);
+    //audioOutput->play();
+
+
 
     return app->exec();
 }

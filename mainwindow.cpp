@@ -94,13 +94,19 @@ MainWindow::MainWindow(QWidget *parent) :
     this->move((QApplication::desktop()->width() - this->width())/2,
                (QApplication::desktop()->height() - this->height())/2);
 
+    //time setting
     connect(ui->spinBoxAlertTime, SIGNAL(valueChanged(int)), this, SLOT(updateConfValue()));
     connect(ui->spinBoxRestTime, SIGNAL(valueChanged(int)), this, SLOT(updateConfValue()));
     connect(ui->checkBoxPlaySound, SIGNAL(stateChanged(int)),
             this, SLOT(checkBoxPlaySound_clicked()));
 
+    //show on startup
     connect(ui->checkBoxShowStartup, SIGNAL(stateChanged(int)),
             this, SLOT(checkBoxShowStartup_clicked()));
+
+    //language
+    connect(ui->radioButton_zhCN, SIGNAL(clicked()), this, SLOT(radioButton_zhCN_checked()));
+    connect(ui->radioButton_enUS, SIGNAL(clicked()), this, SLOT(radioButton_enUS_checked()));
 
     //config menu buttons
     connect(ui->pushButtonDefaults, SIGNAL(clicked()), this, SLOT(pushbutton_defaults()));
@@ -302,6 +308,22 @@ void MainWindow::checkBoxShowStartup_clicked()
 #ifdef DEBUG
     qDebug() << confAll->playSound << ui->checkBoxPlaySound->checkState();
 #endif
+}
+
+void MainWindow::radioButton_zhCN_checked()
+{
+    ui->radioButton_zhCN->setChecked(true);
+    ui->radioButton_enUS->setChecked(false);
+    confAll->language="zh_CN";
+
+}
+
+void MainWindow::radioButton_enUS_checked()
+{
+    ui->radioButton_zhCN->setChecked(false);
+    ui->radioButton_enUS->setChecked(true);
+    confAll->language="en_US";
+
 }
 
 

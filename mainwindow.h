@@ -74,6 +74,8 @@ private slots:
     void pushbutton_rejected();
     void checkBoxPlaySound_clicked();
     void checkBoxShowStartup_clicked();
+    void radioButton_zhCN_checked();
+    void radioButton_enUS_checked();
     void on_pushbtn_update_clicked();
     void change_bg_color();
     void change_fg_color();

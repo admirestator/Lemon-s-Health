@@ -34,7 +34,7 @@ void RestClk::run()
 
 void RestClk::rest_timer_init()
 {
-    //读取配置初始化资源等� //   rest_delay = 1 * 60;   //seconds
+    //读取配置初始化资源等 //   rest_delay = 1 * 60;   //seconds
     confRest->readConfig();
 
 
