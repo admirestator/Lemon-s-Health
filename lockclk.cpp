@@ -33,7 +33,9 @@ bool LockClk::lock_timer_init()
 
 bool LockClk::lock_timer_start()
 {
+#ifdef DEBUG
     qDebug() << "start lock timer " << lock_delay;
+#endif
 
     lock_timer->start(lock_delay);
     return true;

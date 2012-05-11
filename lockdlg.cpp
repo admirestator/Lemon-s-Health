@@ -1,3 +1,4 @@
+#include <QString>
 #include "lockdlg.h"
 #include "ui_lockdlg.h"
 
@@ -14,9 +15,8 @@ LockDlg::LockDlg(QWidget *parent) :
     confLockDlg = new Config();
     confLockDlg->readConfig();
 
-    //透明测试
-    QPalette pal = palette();
     //修改锁屏窗口的颜色
+    QPalette pal = palette();   //透明
     pal.setColor(QPalette::Background, QColor(confLockDlg->bg_colorR, confLockDlg->bg_colorG, confLockDlg->bg_colorB));
     pal.setColor(QPalette::Foreground, QColor(confLockDlg->fg_colorR, confLockDlg->fg_colorG, confLockDlg->fg_colorB));
     setPalette(pal);
@@ -145,13 +145,9 @@ void LockDlg::keyPressEvent (QKeyEvent * event)
 void LockDlg::execPlaySound(QString music)
 {
 #ifdef Q_OS_MAC //Mac OS X platfrom
-    //QSound::play(music);
-    //sound->play(music);
     sound->play();
 #else
     #ifdef WIN32 //windows platfrom
-        //QSound::play(music);
-    //sound->play(music);
     sound->play();
     #else //linux platfrom
         QString cmd;

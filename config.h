@@ -28,6 +28,7 @@ public:
     bool default_start_with_system;
     bool default_playSound;
     bool default_show_startup;
+    ///bool default_show_systray;
     QString default_language;
 
 
@@ -39,11 +40,13 @@ public:
     unsigned short fg_colorR;
     unsigned short fg_colorG;
     unsigned short fg_colorB;
+
     bool start_with_system;
     bool playSound;
     bool show_startup;
-    QString language;
+    //bool show_systray;
 
+    QString language;
     QString version;
 
 public slots:

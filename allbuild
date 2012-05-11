@@ -1,0 +1,4 @@
+#! /bin/bash
+
+make clean && qmake
+make CC=clang CXX=clang++ && ./Clock

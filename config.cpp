@@ -14,6 +14,7 @@ Config::Config()
     default_start_with_system = false;
     default_playSound = true;
     default_show_startup = false;
+    //default_show_systray = true;
     default_language = QString("zh_CN");
 
     alertTime = default_alertTime;
@@ -41,11 +42,13 @@ Config::Config()
     fg_colorB = default_fg_colorB;
 
     start_with_system = default_start_with_system;
+    //show_systray = default_show_systray;
     playSound = default_playSound;
     show_startup = default_show_startup;
     language = default_language;
 
     version = QString("510");
+
     if (QFileInfo(FileName).exists() == false) { //first create
 #ifdef DEBUG
         qDebug() << "not exists";
@@ -156,7 +159,6 @@ int Config::getAlertTime()
 {
     readConfig();
     return alertTime;
-    //return 50 * 1000;
 }
 
 
@@ -165,12 +167,10 @@ short Config::getRestTime()
 {
     readConfig();
     return restTime;
-    //return 1 * 60;
 }
 
 bool Config::getPlaySound()
 {
     readConfig();
     return playSound;
-    //return true;
 }

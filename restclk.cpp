@@ -2,7 +2,6 @@
 
 //#define DEBUG
 
-
 RestClk::RestClk()
 {
     confRest = new Config();
@@ -16,36 +15,25 @@ RestClk::~RestClk()
     //线程显示退出？
     delete confRest;
     delete rest_timer;
-
 }
 
 void RestClk::run()
 {
     rest_timer_start();
-
-#ifdef DEBUG
-    qDebug() << "rest thread run!";
-    qDebug() << rest_delay;
-#endif
-
 }
-
 
 
 void RestClk::rest_timer_init()
 {
-    //读取配置初始化资源等 //   rest_delay = 1 * 60;   //seconds
+    //读取配置初始化资源等 //
+    rest_delay = 1 * 60;   //seconds
     confRest->readConfig();
-
-
-
     rest_delay = confRest->getRestTime() * 60;
 }
 
 
 bool RestClk::rest_timer_start()
 {
-    //rest_timer_init();
     qDebug() << rest_delay << " rest_dealy *1000";
     rest_timer->start(rest_delay * 1000);
 

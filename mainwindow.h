@@ -62,6 +62,7 @@ public:
     LockClk *lock_clk;
     LockDlg *lock_dlg;
     QTimer *refresh_timer;
+
 signals:
     void app_quit();
 
@@ -79,8 +80,14 @@ private slots:
     void pushbutton_rejected();
     void checkBoxPlaySound_clicked();
     void checkBoxShowStartup_clicked();
+
     void radioButton_zhCN_checked();
     void radioButton_enUS_checked();
+    //void radioButton_showSystray_checked();
+    //void radioButton_hiddenSystray_checked();
+
+    void systrayClicked();
+
     void on_pushbtn_update_clicked();
     void change_bg_color();
     void change_fg_color();

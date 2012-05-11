@@ -15,7 +15,7 @@
 #include <QTextBrowser>
 #include <QKeyEvent>
 #include "restclk.h"
-//#include "config.h"
+#include "config.h"
 
 namespace Ui {
     class LockDlg;

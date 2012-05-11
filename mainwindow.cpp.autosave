@@ -176,23 +176,6 @@ void MainWindow::createTrayIcon()
 
 
     trayIcon->show();
-    //connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(show()));
-    /*
-    connect(trayIcon, SIGNAL(messageClicked()), this,
-            SLOT(showMessage ( const QString & title,
-                               const QString & message,
-                               MessageIcon icon = Information,
-                               int millisecondsTimeoutHint = 10000 )));
-    */
-
-    //QSystemTrayIcon::MessageIcon notify_info = QSystemTrayIcon::Information;
-    /*
-    connect(trayIcon, SIGNAL(messageClicked()), trayIcon,
-            SLOT(showMessage("Hello",
-                             "Hello Lemon!",
-                             QSystemTrayIcon::Information,
-                             1000)));
-                             */
     connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(systrayClicked()));
 }
 
@@ -203,7 +186,6 @@ void MainWindow::run_lock_dlg()
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(start()));
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
 
-   // delete lock_dlg_tmp;
     lock_dlg->show();
 
 
@@ -223,7 +205,6 @@ void MainWindow::on_pushbtn_exit_clicked()
     qDebug() << "user exit";
 #endif
     emit app_quit();
-    //lock_dlg->close();
 }
 
 void MainWindow::on_pushbtn_run_clicked()
@@ -359,18 +340,7 @@ void MainWindow::radioButton_enUS_checked()
 
 }
 
-/*
 
-void MainWindow::radioButton_showSystray_checked()
-{
-     confAll->show_systray = true;
-}
-
-void MainWindow::radioButton_hiddenSystray_checked()
-{
-     confAll->show_systray = false;
-}
-*/
 
 void MainWindow::change_bg_color()
 {

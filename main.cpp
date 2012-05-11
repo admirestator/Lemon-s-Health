@@ -4,8 +4,6 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QDebug>
-//#include <Phonon/MediaObject>
-//#include <Phonon/VideoPlayer>
 
 #include "lockclk.h"
 #include "lockdlg.h"
@@ -22,7 +20,9 @@ int main(int argc, char *argv[])
     confMain.readConfig();
 
     QApplication *app = new QApplication(argc, argv);
+    qDebug() << "new";
     if (!QSystemTrayIcon::isSystemTrayAvailable()) {
+        qDebug() << "icon mgs";
         QMessageBox::critical(0, QObject::tr("Systray"),
                               QObject::tr("I couldn't detect any system tray "
                                           "on this system."));
@@ -33,12 +33,12 @@ int main(int argc, char *argv[])
     //language
     QTranslator translator;
     translator.load(confMain.language);
-            qDebug() << confMain.language;
+    //translator.load("zh_CN");
+        qDebug() << confMain.language;
     app->installTranslator(&translator);
 
     //create main window
     MainWindow *main_window = new MainWindow();
-
 
     //连接程序退出信号和槽
     QObject::connect(main_window, SIGNAL(app_quit()), app, SLOT(quit()));
@@ -46,16 +46,6 @@ int main(int argc, char *argv[])
     //锁屏时间间隔到开始锁屏
     if (confMain.show_startup)
         main_window->show();
-
-
-
-   //phonon test
-    //Phonon::AudioOutput *audioOutput =
-     //        new Phonon::AudioOutput(Phonon::VideoCategory, this);
-    //Phonon::createPath("./canon.aac", audioOutput);
-    //audioOutput->play();
-
-
 
     return app->exec();
 }
