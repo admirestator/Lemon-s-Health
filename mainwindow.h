@@ -31,8 +31,12 @@ class MainWindow : public QMainWindow
 
 private:
     QColor color4all;
+    short time2Rest;
+
+    //system tray
     QAction *runRest;
     QAction *minimizeAction;
+
     //QAction *maximizeAction;
     QAction *restoreAction;
     QAction *quitAction;
@@ -43,6 +47,7 @@ private:
     void createTrayIcon();
 
 
+    //configuration
     Config *confAll;
     QString old_lan;
     int old_alertTime;  //backup while changed

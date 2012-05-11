@@ -34,12 +34,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(lock_clk->lock_timer, SIGNAL(timeout()), this, SLOT(run_lock_dlg()));
     connect(lock_clk->lock_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(stop()));
 
+    time2Rest = confAll->alertTime * 60; //convert seconds
+
     //create ui
     ui->setupUi(this);
 
     //main menu
     ui->labelAlertTime->setText(QString::number(confAll->alertTime, 10));
     ui->labelRestTime->setText(QString::number(confAll->restTime, 10));
+    ui->labelTime2Rest->setText(QString::number(confAll->alertTime, 10));
 
     //config menu
     ui->spinBoxAlertTime->setValue(confAll->alertTime);
@@ -83,10 +86,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButtonChangeFGColor, SIGNAL(clicked()), this, SLOT(change_fg_color()));
     ui->pushButtonChangeFGColor->setPalette(QPalette(QColor(confAll->fg_colorR, confAll->fg_colorG, confAll->fg_colorB)));
 
-#ifdef DEBUG
-    qDebug() << confAll->version;
-#endif
-
     //Version
     ui->labelVersionNum->setText(confAll->version);
 
@@ -114,7 +113,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButtonCancel, SIGNAL(clicked()), this, SLOT(pushbutton_rejected()));
 
     trayIcon->show();
-    qDebug() << "sound" << " " << QSound::isAvailable();
     if(QSound::isAvailable()== true) {
        QSound::play(QString("canonind.wav"));
     }
@@ -129,8 +127,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::update_curtime()
 {
+    QString tmp_time;
     ui->label_curtime_value->setText(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
+    tmp_time = --time2Rest;
+    //ui->lcd_resttime->display(format_rest_time.sprintf("%02d:%02d", rest_clk->rest_delay/60, rest_clk->rest_delay%60));
 
+    ui->labelTime2Rest->setText(tmp_time.sprintf("%02d:%02d", time2Rest/60, time2Rest%60));
+    //ui->labelTime2Rest->setText(QString("%d"));tmp_time.sprintf(time2Rest));
 #ifdef DEBUG
     qDebug() << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
 #endif
@@ -264,7 +267,8 @@ void MainWindow::pushbutton_apply()
     qDebug() << "apply";
 #endif
 
-    old_alertTime = confAll->alertTime;  //backup while changed
+    //backup while changed
+    old_alertTime = confAll->alertTime;
     old_restTime = confAll->restTime;
     old_playSound = confAll->playSound;
 
@@ -292,7 +296,6 @@ void MainWindow::pushbutton_rejected()
 void MainWindow::checkBoxPlaySound_clicked()
 {
     confAll->playSound = ui->checkBoxPlaySound->isChecked();
-    //confAll->write();
 
 #ifdef DEBUG
     qDebug() << confAll->playSound << ui->checkBoxPlaySound->checkState();
@@ -303,7 +306,6 @@ void MainWindow::checkBoxPlaySound_clicked()
 void MainWindow::checkBoxShowStartup_clicked()
 {
     confAll->show_startup = ui->checkBoxShowStartup->isChecked();
-    //confAll->write();
 
 #ifdef DEBUG
     qDebug() << confAll->playSound << ui->checkBoxPlaySound->checkState();
