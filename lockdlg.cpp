@@ -130,6 +130,8 @@ void LockDlg::on_restbtn_exit_clicked()
     #endif
 #endif
     execPlaySound(QString("complete.wav"));
+
+    confLockDlg->readConfig();
     this->hide();
 }
 

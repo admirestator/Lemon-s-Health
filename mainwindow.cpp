@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     lock_clk = new LockClk();
     lock_clk->run();
 
+
     refresh_timer = new QTimer();
     refresh_timer->start(1000);
 
@@ -35,7 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(lock_clk->lock_timer, SIGNAL(timeout()), this, SLOT(run_lock_dlg()));
     connect(lock_clk->lock_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(stop()));
 
-    time2Rest = confAll->alertTime * 60; //convert seconds
+    //lock_dlg->time2Rest = confAll->alertTime * 60; //convert seconds
+    lock_clk->time2Rest = confAll->alertTime * 60; //convert seconds
 
     //create ui
     ui->setupUi(this);
@@ -106,10 +108,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->checkBoxShowStartup, SIGNAL(stateChanged(int)),
             this, SLOT(checkBoxShowStartup_clicked()));
 
-    //system tray contral
-    //connect(ui->radioButton_showSystray, SIGNAL(clicked()), this, SLOT(radioButton_showSystray_checked()));
-    //connect(ui->radioButton_hiddenSystray, SIGNAL(clicked()), this, SLOT(radioButton_hiddenSystray_checked()));
-
     //language
     connect(ui->radioButton_zhCN, SIGNAL(clicked()), this, SLOT(radioButton_zhCN_checked()));
     connect(ui->radioButton_enUS, SIGNAL(clicked()), this, SLOT(radioButton_enUS_checked()));
@@ -119,6 +117,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButtonApply, SIGNAL(clicked()), this, SLOT(pushbutton_apply()));
     connect(ui->pushButtonCancel, SIGNAL(clicked()), this, SLOT(pushbutton_rejected()));
 
+    //connect(ui-> , SIGNAL(clicked()), this, SLOT(on_restbtn_exit_clicked()));
 //-----------------------------slot-----------------------------------------
     //trayIcon->show();
     if(QSound::isAvailable()== true) {
@@ -130,6 +129,7 @@ MainWindow::~MainWindow()
 {
     delete refresh_timer;
     delete lock_clk;
+    delete lock_dlg;
     delete ui;
 }
 
@@ -137,8 +137,8 @@ void MainWindow::update_curtime()
 {
     QString tmp_time;
     ui->label_curtime_value->setText(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
-    tmp_time = --time2Rest;
-    ui->labelTime2Rest->setText(tmp_time.sprintf("%02d:%02d", time2Rest/60, time2Rest%60));
+    tmp_time = --lock_clk->time2Rest;
+    ui->labelTime2Rest->setText(tmp_time.sprintf("%02d:%02d", lock_clk->time2Rest/60, lock_clk->time2Rest%60));
 #ifdef DEBUG
     qDebug() << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
 #endif
@@ -176,23 +176,6 @@ void MainWindow::createTrayIcon()
 
 
     trayIcon->show();
-    //connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(show()));
-    /*
-    connect(trayIcon, SIGNAL(messageClicked()), this,
-            SLOT(showMessage ( const QString & title,
-                               const QString & message,
-                               MessageIcon icon = Information,
-                               int millisecondsTimeoutHint = 10000 )));
-    */
-
-    //QSystemTrayIcon::MessageIcon notify_info = QSystemTrayIcon::Information;
-    /*
-    connect(trayIcon, SIGNAL(messageClicked()), trayIcon,
-            SLOT(showMessage("Hello",
-                             "Hello Lemon!",
-                             QSystemTrayIcon::Information,
-                             1000)));
-                             */
     connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(systrayClicked()));
 }
 
@@ -203,7 +186,6 @@ void MainWindow::run_lock_dlg()
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(start()));
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
 
-   // delete lock_dlg_tmp;
     lock_dlg->show();
 
 
@@ -223,7 +205,6 @@ void MainWindow::on_pushbtn_exit_clicked()
     qDebug() << "user exit";
 #endif
     emit app_quit();
-    //lock_dlg->close();
 }
 
 void MainWindow::on_pushbtn_run_clicked()
@@ -298,6 +279,9 @@ void MainWindow::pushbutton_apply()
     ui->labelAlertTime->setText(QString::number(confAll->alertTime, 10));
     ui->labelRestTime->setText(QString::number(confAll->restTime, 10));
     confAll->writeConfig();
+
+    //update current time
+    confAll->readConfig();
 }
 
 void MainWindow::pushbutton_rejected()
@@ -359,18 +343,7 @@ void MainWindow::radioButton_enUS_checked()
 
 }
 
-/*
 
-void MainWindow::radioButton_showSystray_checked()
-{
-     confAll->show_systray = true;
-}
-
-void MainWindow::radioButton_hiddenSystray_checked()
-{
-     confAll->show_systray = false;
-}
-*/
 
 void MainWindow::change_bg_color()
 {

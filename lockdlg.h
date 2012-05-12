@@ -30,6 +30,7 @@ public:
     ~LockDlg();
 
     RestClk *rest_clk;
+    int time2Rest;
 
 private:
     Config *confLockDlg;
