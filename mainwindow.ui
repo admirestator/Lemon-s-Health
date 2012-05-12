@@ -31,7 +31,7 @@
      <enum>QTabWidget::West</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="iconSize">
      <size>
@@ -207,13 +207,6 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLabel" name="label_24">
-           <property name="text">
-            <string>Time to Rest(m)</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
@@ -250,22 +243,6 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLabel" name="labelTime2Rest">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::RightToLeft</enum>
-           </property>
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
@@ -279,13 +256,6 @@
          </item>
          <item>
           <widget class="QLabel" name="label_10">
-           <property name="text">
-            <string>minute(s)</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_23">
            <property name="text">
             <string>minute(s)</string>
            </property>
@@ -529,25 +499,36 @@
      <attribute name="title">
       <string>Help</string>
      </attribute>
-     <widget class="QTextEdit" name="textEdit">
+     <widget class="QLabel" name="label_23">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>0</y>
         <width>441</width>
-        <height>301</height>
+        <height>271</height>
        </rect>
       </property>
-      <property name="html">
-       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'LiHei Pro'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1. Why Lemon?&lt;br /&gt;Lemon is not the fruit lemon.It was the name a female.So you had got that this program was named after from her. &lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;2. Who is Lemon?&lt;br /&gt;Lemon is a woman in myth, she had played an important role in my life. &lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. How to use this program?&lt;br /&gt;Just start it and leave it alone. &lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;4. What is alert time?&lt;br /&gt;it means how long you will have a rest. &lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;5. What is rest time?&lt;br /&gt;It means how much time you will take for a rest. &lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <property name="text">
+       <string>1. Why Lemon?
+Lemon is not the fruit lemon.It was the name a female.So you had got that
+this program was named after from her. 
+
+2. Who is Lemon?
+Lemon is a woman in myth, she had played an important role in my life. 
+
+3. How to use this program?
+Just start it and leave it alone. 
+
+4. What is alert time?
+it means how long you will have a rest. 
+
+5. What is rest time?
+It means how much time you will take for a rest. 
+
+6. How can I change the color?
+You can change the color in &quot;Config&quot; menu, then you can see two buttons
+with color, one for background color, and another for foreground.
+</string>
       </property>
      </widget>
     </widget>
@@ -593,7 +574,7 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="text">
