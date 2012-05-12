@@ -478,7 +478,7 @@
        <string>Color Setting</string>
       </property>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="layoutWidget9">
       <property name="geometry">
        <rect>
         <x>31</x>
