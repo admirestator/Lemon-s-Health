@@ -34,8 +34,6 @@ void RestClk::rest_timer_init()
 
 bool RestClk::rest_timer_start()
 {
-    qDebug() << rest_delay << " rest_dealy *1000";
     rest_timer->start(rest_delay * 1000);
-
     return true;
 }

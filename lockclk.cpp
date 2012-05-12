@@ -28,24 +28,12 @@ bool LockClk::lock_timer_init()
 {
     //读取配置初始化资源等等
     lock_delay = confLock->getAlertTime() * 60 * 1000;    //ms for $confLcok minutes.
+    time2Rest = confLock->alertTime * 60;
     return true;
 }
 
 bool LockClk::lock_timer_start()
 {
-#ifdef DEBUG
-    qDebug() << "start lock timer " << lock_delay;
-#endif
-
     lock_timer->start(lock_delay);
-    return true;
-}
-
-
-
-bool LockClk::lock_timer_clear()
-{
-
-
     return true;
 }

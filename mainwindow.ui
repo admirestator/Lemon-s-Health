@@ -524,39 +524,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>210</y>
-        <width>201</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
-       <item>
-        <widget class="QLabel" name="label_25">
-         <property name="text">
-          <string>SystemTray</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="radioButton_showSystray">
-         <property name="text">
-          <string>Show</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="radioButton_hiddenSystray">
-         <property name="text">
-          <string>HIdden</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
     </widget>
     <widget class="QWidget" name="tab_help">
      <attribute name="title">

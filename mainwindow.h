@@ -31,7 +31,6 @@ class MainWindow : public QMainWindow
 
 private:
     QColor color4all;
-    short time2Rest;
 
     //system tray
     QAction *runRest;
@@ -68,6 +67,7 @@ signals:
 
 public slots:
     void run_lock_dlg();
+    void stop_lock_dlg();
     void update_curtime();
     void on_pushbtn_exit_clicked();
     void on_pushbtn_run_clicked();
@@ -83,9 +83,6 @@ private slots:
 
     void radioButton_zhCN_checked();
     void radioButton_enUS_checked();
-    //void radioButton_showSystray_checked();
-    //void radioButton_hiddenSystray_checked();
-
     void systrayClicked();
 
     void on_pushbtn_update_clicked();

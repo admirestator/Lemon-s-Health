@@ -14,17 +14,15 @@ Config::Config()
     default_start_with_system = false;
     default_playSound = true;
     default_show_startup = false;
-    //default_show_systray = true;
     default_language = QString("zh_CN");
 
     alertTime = default_alertTime;
     restTime = default_restTime;
 
-
-    //default background color RGB(72, 118, 255));
-    //Mac蓝色 RGB(61, 108, 239)
-    //Facebook蓝色 RGB(59, 89, 153)
-    //YAHOO!紫色 RGB(63, OA, 6E)
+    // default background color RGB(72, 118, 255));
+    // Mac蓝色 RGB(61, 108, 239)
+    // Facebook蓝色 RGB(59, 89, 153)
+    // YAHOO!紫色 RGB(63, OA, 6E)
     default_bg_colorR = 61;
     default_bg_colorG = 108;
     default_bg_colorB = 239;
@@ -34,6 +32,7 @@ Config::Config()
     default_fg_colorG = 255;
     default_fg_colorB = 47;
 
+    //custome configuration
     bg_colorR = default_bg_colorR;
     bg_colorG = default_bg_colorG;
     bg_colorB = default_bg_colorB;
@@ -42,7 +41,6 @@ Config::Config()
     fg_colorB = default_fg_colorB;
 
     start_with_system = default_start_with_system;
-    //show_systray = default_show_systray;
     playSound = default_playSound;
     show_startup = default_show_startup;
     language = default_language;
@@ -77,7 +75,6 @@ void Config::readConfig()
     qDebug() << "read config";
 #endif
     confFile->open(QIODevice::ReadOnly |  QIODevice::Text);
-    //QTextStream inconf(confFile);
     QDataStream inconf(confFile);
 
     inconf >> default_language >> default_alertTime

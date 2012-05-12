@@ -8,10 +8,6 @@ LockDlg::LockDlg(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::LockDlg)
 {
-#ifdef DEBUG
-    qDebug() << "lock dlg constructor";
-#endif
-
     confLockDlg = new Config();
     confLockDlg->readConfig();
 
@@ -21,16 +17,10 @@ LockDlg::LockDlg(QWidget *parent) :
     pal.setColor(QPalette::Foreground, QColor(confLockDlg->fg_colorR, confLockDlg->fg_colorG, confLockDlg->fg_colorB));
     setPalette(pal);
 
-#ifdef DEBUG
-    qDebug() << "dlg debug: "
-             << confLockDlg->bg_colorR << confLockDlg->bg_colorG << confLockDlg->bg_colorB
-             << confLockDlg->fg_colorR << confLockDlg->fg_colorG << confLockDlg->fg_colorB;
-#endif
-
+    //连接锁屏间隔计时器和休息计时界面
     rest_clk = new RestClk();
     refresh_timer = new QTimer();
 
-    //连接锁屏间隔计时器和休息计时界面
     //当前休息时间刷新
     connect(refresh_timer, SIGNAL(timeout()), this, SLOT(display_rest_time()));
 

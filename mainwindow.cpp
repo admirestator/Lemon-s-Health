@@ -13,10 +13,11 @@ MainWindow::MainWindow(QWidget *parent) :
     createActions();
     createTrayIcon();
 
+    //timer for lock screen
     lock_clk = new LockClk();
     lock_clk->run();
 
-
+    //refresh timer
     refresh_timer = new QTimer();
     refresh_timer->start(1000);
 
@@ -27,16 +28,6 @@ MainWindow::MainWindow(QWidget *parent) :
     old_restTime = confAll->restTime;
     old_playSound = confAll->playSound;
 
-
-
-    //update refresh time
-    connect(refresh_timer, SIGNAL(timeout()), this, SLOT(update_curtime()));
-
-    //add lock_clk timer
-    connect(lock_clk->lock_timer, SIGNAL(timeout()), this, SLOT(run_lock_dlg()));
-    connect(lock_clk->lock_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(stop()));
-
-    //lock_dlg->time2Rest = confAll->alertTime * 60; //convert seconds
     lock_clk->time2Rest = confAll->alertTime * 60; //convert seconds
 
     //create ui
@@ -82,12 +73,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     //background color control
-    connect(ui->pushButtonChangeBGColor, SIGNAL(clicked()), this, SLOT(change_bg_color()));
-    ui->pushButtonChangeBGColor->setPalette(QPalette(QColor(confAll->bg_colorR, confAll->bg_colorG, confAll->bg_colorB)));
-
+    ui->pushButtonChangeBGColor->setPalette(
+                QPalette(QColor(confAll->bg_colorR,
+                                confAll->bg_colorG, confAll->bg_colorB)));
     //foreground color control
-    connect(ui->pushButtonChangeFGColor, SIGNAL(clicked()), this, SLOT(change_fg_color()));
-    ui->pushButtonChangeFGColor->setPalette(QPalette(QColor(confAll->fg_colorR, confAll->fg_colorG, confAll->fg_colorB)));
+    ui->pushButtonChangeFGColor->setPalette(
+                QPalette(QColor(confAll->fg_colorR,
+                                confAll->fg_colorG, confAll->fg_colorB)));
 
     //Version
     ui->labelVersionNum->setText(confAll->version);
@@ -98,6 +90,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 //-----------------------------slot-----------------------------------------
+    //update refresh time
+    connect(refresh_timer, SIGNAL(timeout()), this, SLOT(update_curtime()));
+
+    //add lock_clk timer
+    connect(lock_clk->lock_timer, SIGNAL(timeout()), this, SLOT(run_lock_dlg()));
+    //connect(lock_clk->lock_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(stop()));
+    connect(lock_clk->lock_timer, SIGNAL(timeout()), this, SLOT(stop_lock_dlg()));
+
     //time setting
     connect(ui->spinBoxAlertTime, SIGNAL(valueChanged(int)), this, SLOT(updateConfValue()));
     connect(ui->spinBoxRestTime, SIGNAL(valueChanged(int)), this, SLOT(updateConfValue()));
@@ -112,17 +112,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->radioButton_zhCN, SIGNAL(clicked()), this, SLOT(radioButton_zhCN_checked()));
     connect(ui->radioButton_enUS, SIGNAL(clicked()), this, SLOT(radioButton_enUS_checked()));
 
+    //color contral
+    connect(ui->pushButtonChangeBGColor, SIGNAL(clicked()), this, SLOT(change_bg_color()));
+    connect(ui->pushButtonChangeFGColor, SIGNAL(clicked()), this, SLOT(change_fg_color()));
+
     //config menu buttons
     connect(ui->pushButtonDefaults, SIGNAL(clicked()), this, SLOT(pushbutton_defaults()));
     connect(ui->pushButtonApply, SIGNAL(clicked()), this, SLOT(pushbutton_apply()));
     connect(ui->pushButtonCancel, SIGNAL(clicked()), this, SLOT(pushbutton_rejected()));
-
-    //connect(ui-> , SIGNAL(clicked()), this, SLOT(on_restbtn_exit_clicked()));
 //-----------------------------slot-----------------------------------------
-    //trayIcon->show();
-    if(QSound::isAvailable()== true) {
-       QSound::play(QString("canonind.wav"));
-    }
 }
 
 MainWindow::~MainWindow()
@@ -139,11 +137,7 @@ void MainWindow::update_curtime()
     ui->label_curtime_value->setText(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
     tmp_time = --lock_clk->time2Rest;
     ui->labelTime2Rest->setText(tmp_time.sprintf("%02d:%02d", lock_clk->time2Rest/60, lock_clk->time2Rest%60));
-#ifdef DEBUG
-    qDebug() << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
-#endif
 }
-
 
 void MainWindow::createActions()
 {
@@ -174,7 +168,6 @@ void MainWindow::createTrayIcon()
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->setIcon(QIcon("zafx.svg"));
 
-
     trayIcon->show();
     connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(systrayClicked()));
 }
@@ -182,17 +175,23 @@ void MainWindow::createTrayIcon()
 void MainWindow::run_lock_dlg()
 {
     lock_dlg = new LockDlg();
+
+    //how much time left to rest
+    //lock_clk->time2Rest = (confAll->alertTime + confAll->restTime) * 60;
+    lock_clk->time2Rest = confAll->alertTime * 60;
+
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg->rest_clk->rest_timer, SLOT(stop()));
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_clk->lock_timer, SLOT(start()));
     connect(lock_dlg->rest_clk->rest_timer, SIGNAL(timeout()), lock_dlg, SLOT(close()));
 
     lock_dlg->show();
-
-
-#ifdef DEBUG
-    qDebug() << "run lock dlg";
-#endif
 }
+
+void MainWindow::stop_lock_dlg()
+{
+    lock_clk->lock_timer->stop();
+}
+
 
 void MainWindow::on_pushbtn_update_clicked()
 {
@@ -201,43 +200,27 @@ void MainWindow::on_pushbtn_update_clicked()
 
 void MainWindow::on_pushbtn_exit_clicked()
 {
-#ifdef DEBUG
-    qDebug() << "user exit";
-#endif
     emit app_quit();
 }
 
 void MainWindow::on_pushbtn_run_clicked()
 {
-#ifdef DEBUG
-    qDebug() << "show lock dialg";
-#endif
     this->hide();
     run_lock_dlg();
 }
-
 
 void MainWindow::pushbtn_update()
 {
     qDebug() << "check update...";
 }
 
-
 void MainWindow::updateConfValue()
 {
-
     confAll->alertTime = ui->spinBoxAlertTime->value();
     confAll->restTime = ui->spinBoxRestTime->value();
-
-    //playsound was set in on_checkboxplaysound_clicked()
     confAll->writeConfig();
-
-#ifdef DEBUG
-    qDebug() << confAll->alertTime;
-    qDebug() << confAll->restTime;
-#endif
+    confAll->readConfig();
 }
-
 
 void MainWindow::pushbutton_defaults()
 {
@@ -257,20 +240,10 @@ void MainWindow::pushbutton_defaults()
     ui->pushButtonChangeFGColor->setPalette(QPalette(QColor(confAll->fg_colorR,
                                                             confAll->fg_colorG,
                                                             confAll->fg_colorB)));
-
-#ifdef DEBUG
-    qDebug() << "resetore to default";
-#endif
-
 }
-
 
 void MainWindow::pushbutton_apply()
 {
-#ifdef DEBUG
-    qDebug() << "apply";
-#endif
-
     //backup while changed
     old_alertTime = confAll->alertTime;
     old_restTime = confAll->restTime;
@@ -294,29 +267,16 @@ void MainWindow::pushbutton_rejected()
     //update mainmenu value
     ui->spinBoxAlertTime->setValue(confAll->alertTime);
     ui->spinBoxRestTime->setValue(confAll->restTime);
-
-#ifdef DEBUG
-    qDebug() << "rejected";
-#endif
 }
 
 void MainWindow::checkBoxPlaySound_clicked()
 {
     confAll->playSound = ui->checkBoxPlaySound->isChecked();
-
-#ifdef DEBUG
-    qDebug() << confAll->playSound << ui->checkBoxPlaySound->checkState();
-#endif
 }
-
 
 void MainWindow::checkBoxShowStartup_clicked()
 {
     confAll->show_startup = ui->checkBoxShowStartup->isChecked();
-
-#ifdef DEBUG
-    qDebug() << confAll->playSound << ui->checkBoxPlaySound->checkState();
-#endif
 }
 
 void MainWindow::systrayClicked()
@@ -325,7 +285,6 @@ void MainWindow::systrayClicked()
                              tr("Sorry, I already gave what help I could.\n"
                                 "Maybe you should try asking a human?"));
 }
-
 
 void MainWindow::radioButton_zhCN_checked()
 {
@@ -342,8 +301,6 @@ void MainWindow::radioButton_enUS_checked()
     confAll->language="en_US";
 
 }
-
-
 
 void MainWindow::change_bg_color()
 {

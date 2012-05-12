@@ -28,7 +28,6 @@ public:
     bool default_start_with_system;
     bool default_playSound;
     bool default_show_startup;
-    ///bool default_show_systray;
     QString default_language;
 
 

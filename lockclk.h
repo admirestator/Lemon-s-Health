@@ -14,6 +14,8 @@ public:
     Config *confLock;
     QTimer *lock_timer;
 
+    int time2Rest;
+
     //线程开始
     void run();
 
@@ -25,8 +27,6 @@ private:
     //锁屏计时嚣控制
     bool lock_timer_init();
     bool lock_timer_start();
-    bool lock_timer_clear();
-
 };
 
 #endif // LOCKCLK_H
