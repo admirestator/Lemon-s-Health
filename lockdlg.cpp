@@ -67,8 +67,8 @@ LockDlg::LockDlg(QWidget *parent) :
 
     //播放音乐
     sound_name = "canonind.wav";
-    sound = new QSound(sound_name);
-    execPlaySound(QString(sound_name));
+    //sound = new QSound(sound_name);
+    //execPlaySound(QString(sound_name));
 
     rest_clk->run();
 
@@ -119,7 +119,7 @@ void LockDlg::on_restbtn_exit_clicked()
         system("pkill -9 aplay");
     #endif
 #endif
-    execPlaySound(QString("complete.wav"));
+    //execPlaySound(QString("complete.wav"));
 
     confLockDlg->readConfig();
     this->hide();

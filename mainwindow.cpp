@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //main menu
     ui->labelAlertTime->setText(QString::number(confAll->alertTime, 10));
     ui->labelRestTime->setText(QString::number(confAll->restTime, 10));
-    ui->labelTime2Rest->setText(QString::number(confAll->alertTime, 10));
+    //ui->labelTime2Rest->setText(QString::number(confAll->alertTime, 10));
 
     //config menu
     ui->spinBoxAlertTime->setValue(confAll->alertTime);
@@ -136,7 +136,7 @@ void MainWindow::update_curtime()
     QString tmp_time;
     ui->label_curtime_value->setText(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
     tmp_time = --lock_clk->time2Rest;
-    ui->labelTime2Rest->setText(tmp_time.sprintf("%02d:%02d", lock_clk->time2Rest/60, lock_clk->time2Rest%60));
+    //ui->labelTime2Rest->setText(tmp_time.sprintf("%02d:%02d", lock_clk->time2Rest/60, lock_clk->time2Rest%60));
 }
 
 void MainWindow::createActions()
