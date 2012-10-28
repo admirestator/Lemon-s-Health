@@ -166,7 +166,7 @@ public:
 
         layoutWidget3 = new QWidget(main_tab);
         layoutWidget3->setObjectName(QString::fromUtf8("layoutWidget3"));
-        layoutWidget3->setGeometry(QRect(320, 190, 91, 16));
+        layoutWidget3->setGeometry(QRect(320, 190, 96, 16));
         horizontalLayout_3 = new QHBoxLayout(layoutWidget3);
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -190,7 +190,7 @@ public:
         label_curtime_value->setGeometry(QRect(120, 70, 111, 16));
         layoutWidget = new QWidget(main_tab);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(30, 101, 216, 58));
+        layoutWidget->setGeometry(QRect(30, 101, 229, 58));
         horizontalLayout_4 = new QHBoxLayout(layoutWidget);
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
@@ -263,7 +263,7 @@ public:
         label_15->setGeometry(QRect(180, 20, 81, 16));
         layoutWidget4 = new QWidget(tab);
         layoutWidget4->setObjectName(QString::fromUtf8("layoutWidget4"));
-        layoutWidget4->setGeometry(QRect(30, 70, 133, 71));
+        layoutWidget4->setGeometry(QRect(30, 70, 140, 71));
         gridLayout_3 = new QGridLayout(layoutWidget4);
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -417,7 +417,7 @@ public:
         label_9->setGeometry(QRect(30, 60, 401, 81));
         layoutWidget7 = new QWidget(tab_about);
         layoutWidget7->setObjectName(QString::fromUtf8("layoutWidget7"));
-        layoutWidget7->setGeometry(QRect(20, 150, 421, 83));
+        layoutWidget7->setGeometry(QRect(20, 150, 449, 83));
         gridLayout_4 = new QGridLayout(layoutWidget7);
         gridLayout_4->setSpacing(6);
         gridLayout_4->setContentsMargins(11, 11, 11, 11);
@@ -474,7 +474,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabConfig->setCurrentIndex(0);
+        tabConfig->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

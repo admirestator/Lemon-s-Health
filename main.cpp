@@ -5,16 +5,27 @@
 #include <QLocale>
 #include <QDebug>
 
+#include <iostream>
+
 #include "lockclk.h"
 #include "lockdlg.h"
 #include "restclk.h"
 #include "mainwindow.h"
 #include "config.h"
 
+using namespace std;
 
 int main(int argc, char *argv[])
 {
-
+#ifdef Q_WS_WIN
+   cout << "Win32" << endl;
+#endif
+#ifdef Q_WS_X11
+   cout << "Linux/Unix" << endl;
+#endif
+#ifdef  Q_WS_MAC
+   cout << "Mac OS" << endl;
+#endif
     //read config
     Config confMain;
     confMain.readConfig();
